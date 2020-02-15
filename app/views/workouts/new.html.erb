@@ -1,0 +1,8 @@
+<%= form_for @workout do |f|%>
+  <%= f.label :description%>
+  <%=t.text_field :description%>
+  <br></br>
+  <%=f.label :date_performed%>
+  <%=f.datetime_select(:date_performed)%>
+  <br></br>
+<%end%>
