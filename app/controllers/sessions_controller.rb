@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+
   def new
   end
 
@@ -8,6 +9,10 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       redirect_to user_path(@user)
+    elsif
+      !@user
+      flash[:message] = "You need to sign up as a user before you can log in."
+      redirect_to signup_path
     else
       flash[:message] = "Sorry, please try again."
       redirect_to login_path
