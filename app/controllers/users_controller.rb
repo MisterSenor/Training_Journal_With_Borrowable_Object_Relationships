@@ -15,8 +15,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:id])
+    if @user == current_user
+      render :show
+    else
+      flash[:message] = "You are not allowed to view other users' information."
+      redirect_to user_path(current_user)
+    end
   end
+
+  def index
+    @users = User.all
+  end
+
 
   private
 
