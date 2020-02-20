@@ -1,0 +1,13 @@
+<h1>Record an exercise</h1>
+
+<%=form_for @exercise do |f|%>
+<%=f.label :name%>
+<%=f.text_field :name%>
+<%=f.label :date_performed%>
+<%=f.date_field :date_performed%>
+<%=f.label :sets_reps_weights%>
+<%=f.text_area :sets_reps_weights, :size => 150%>
+<%=f.label :goal_id%>
+<%=f.collection_select :goal_id, current_user.goals, :id, :description%>
+<%=f.submit "Record exercise"%>
+<%end%>
