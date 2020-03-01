@@ -25,7 +25,7 @@ class WorkoutsController < ApplicationController
 
   private
     def workout_params
-      params.require(:workout).permit(:description, :date_performed)
+      params.require(:workout).permit(:description, :date_performed, :user_id)
     end
 
 

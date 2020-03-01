@@ -1,13 +1,31 @@
 <h1>Record an exercise</h1>
 
 <%=form_for @exercise do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<%=f.label :date_performed%>
-<%=f.date_field :date_performed%>
-<%=f.label :sets_reps_weights%>
-<%=f.text_area :sets_reps_weights, :size => 150%>
-<%=f.label :goal_id%>
-<%=f.collection_select :goal_id, current_user.goals, :id, :description%>
-<%=f.submit "Record exercise"%>
+  <%=f.label :name%>
+  <%=f.text_field :name%>
+  </br></br>
+  <%=f.label :date_performed%>
+  <%=f.date_field :date_performed%>
+  </br></br>
+  <%=f.label :sets_reps_weights%>
+  <%=f.text_area :sets_reps_weights, :size => 150%>
+  </br></br>
+  <%=f.label :goal_id%>
+  <%=f.collection_select :goal_id, current_user.goals, :id, :description%>
+  </br></br>
+  <%=f.label :workout_id, "Select a workout"%>
+  <%=f.collection_select :workout_id, Workout.all, :id, :description, include_blank: true%>
+  </br></br>
+  <h3>Or create a new workout for this exercise</h3>
+  <%=f. fields_for :workout do |w|%>
+    <%=w.label :description%>
+    <%=w.text_field :description%>
+    </br>
+    <%=w.label :date_performed%>
+    <%=w.date_field :date_performed%>
+    </br>
+    <%=w.hidden_field :user_id, value: current_user.id%>
+  <%end%>
+  </br></br>
+  <%=f.submit "Record exercise"%>
 <%end%>
