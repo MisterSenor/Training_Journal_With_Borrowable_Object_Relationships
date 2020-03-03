@@ -24,8 +24,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_180512) do
 
   create_table "goals", force: :cascade do |t|
     t.string "description"
-    t.string "achieved_status"
-    t.string "boolean"
+    t.boolean "achieved_status"
     t.integer "user_id"
     t.datetime "date_achieved"
     t.datetime "created_at", precision: 6, null: false

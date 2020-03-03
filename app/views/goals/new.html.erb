@@ -1,0 +1,13 @@
+<h1>Create a new goal</h1>
+<%= form_for @goal do |f|%>
+  <%=f.label :description%>
+  <%=f.text_field :description%>
+  <br></br>
+  <%=f.label :achieved_status%>
+  <%=f.check_box :achieved_status%>
+  <br></br>
+  <%=f.label :date_achieved%>
+  <%=f.date_field :date_achieved%>
+  <br></br>
+  <%=f.submit "Create goal"%>
+<%end%>
