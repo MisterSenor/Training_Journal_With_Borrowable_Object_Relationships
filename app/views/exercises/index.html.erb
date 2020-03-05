@@ -1,0 +1,7 @@
+<%@exercises.each do |exercise|%>
+  This exercise helps for: <%=exercise.goal.description%>.</br>
+  This exercise is part of a <%=exercise.workout.description%> workout.</br>
+  Name of exercise: <%=exercise.name%></br>
+  Sets, reps, and weights: <%=exercise.sets_reps_weights%></br>
+  Date performed: <%=exercise.date_performed%></br></br>
+  <%end%>
