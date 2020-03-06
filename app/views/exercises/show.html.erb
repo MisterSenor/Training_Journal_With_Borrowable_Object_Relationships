@@ -1,6 +1,8 @@
 <h1>Exercise information</h1>
-Workout: <%=@exercise.workout.description%></br>
+
+Workout: <%=@workout.description%></br>
 Goal: <%=@exercise.goal.description%></br>
 Name: <%=@exercise.name%></br>
 Sets => Reps @ Weights: <%=@exercise.sets_reps_weights%></br>
-Date performed: <%=@exercise.date_performed%></br>
+<%t = @exercise.date_performed%>
+Date performed: <%=t.month%>/<%=t.day%>/<%=t.year%></br>

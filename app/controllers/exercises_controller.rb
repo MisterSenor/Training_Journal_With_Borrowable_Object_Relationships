@@ -18,6 +18,7 @@ class ExercisesController < ApplicationController
 
   def show
     @exercise = Exercise.find(params[:id])
+    @workout = Workout.find(@exercise.workout_id)
   end
 
   def index
