@@ -1,8 +1,9 @@
 <h1>Exercise information</h1>
 
-Workout: <%=@workout.description%></br>
-Goal: <%=@exercise.goal.description%></br>
-Name: <%=@exercise.name%></br>
-Sets => Reps @ Weights: <%=@exercise.sets_reps_weights%></br>
+<strong>Workout:</strong> <%=@workout.description%></br>
+<strong>Goal:</strong> <%=@exercise.goal.description%></br>
+<strong>Name:</strong> <%=@exercise.name%></br>
+<strong>Sets: Reps @ Weights:</strong> <%=@exercise.sets_reps_weights%></br>
 <%t = @exercise.date_performed%>
-Date performed: <%=t.month%>/<%=t.day%>/<%=t.year%></br>
+<strong>Date performed:</strong> <%=t.month%>/<%=t.day%>/<%=t.year%></br>
+<%=link_to "Edit this exercise", edit_exercise_path(@exercise)%>

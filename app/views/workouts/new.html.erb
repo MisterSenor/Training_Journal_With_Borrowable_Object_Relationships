@@ -2,9 +2,9 @@
 <%= form_for @workout do |f|%>
   <%=f.label :description%>
   <%=f.text_field :description%>
-  <br></br>
-  <%=f.label :date_performed%>
-  <%=f.date_field :date_performed%>
-  <br></br>
+  </br>
+  <%= f.label :intensity%>
+  <%=f.select :intensity, options_for_select(["low", "medium", "high"])%>
+
   <%=f.submit "Create workout"%>
 <%end%>

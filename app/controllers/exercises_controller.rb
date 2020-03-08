@@ -8,6 +8,9 @@ class ExercisesController < ApplicationController
 
   def create
     @exercise = Exercise.new(exercise_params)
+      if exercise_params[:workout_id]
+        @exercise.workout_id = exercise_params[:workout_id]
+      end
     if @exercise.save
       redirect_to exercise_path(@exercise)
     else
@@ -25,10 +28,22 @@ class ExercisesController < ApplicationController
     @exercises = Exercise.all
   end
 
+  def edit
+    @exercise = Exercise.find(params[:id])
+  end
+
+  def update
+    @exercise = Exercise.find(params[:id])
+    @exercise.update(exercise_params)
+    redirect_to exercise_path(@exercise)
+  end
+
+
+
 
   private
     def exercise_params
-      params.require(:exercise).permit(:name, :date_performed, :sets_reps_weights, :goal_id, :workout_id, workout_attributes:[:description, :date_performed, :user_id])
+      params.require(:exercise).permit(:name, :date_performed, :sets_reps_weights, :goal_id, :workout_id, workout_attributes:[:description, :intensity, :user_id])
     end
 
 end

@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_02_09_180512) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.datetime "date_performed"
+    t.string "intensity"
     t.string "description"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

@@ -1,4 +1,10 @@
 
-Goal description: <%=@goal.description%>
-Achieved?: <%=@goal.achieved_status%>
-Date achieved: <%=@goal.date_achieved%>
+<strong>Goal description:</strong> <%=@goal.description%></br>
+<strong>Achieved?:</strong> <%=@goal.achieved_status%></br>
+<strong>Date achieved:</strong> <%if @goal.date_achieved != nil%>
+  <%=@goal.date_achieved%>
+  <%else%>
+    <%="Not yet"%>
+<%end%></br>
+<%=link_to "Create another new goal", new_goal_path%></br>
+<%=link_to "Add an exercise and a workout to this goal", new_exercise_path%>

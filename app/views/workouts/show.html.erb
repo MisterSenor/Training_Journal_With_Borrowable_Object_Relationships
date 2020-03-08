@@ -7,8 +7,7 @@
 <%end%>
 <h1> Workout #: <%=workout_number%></h1>
 Workout description: <%=@workout.description%></br>
-<%t = @workout.date_performed%>
-Date performed: <%=t.month%>/<%=t.day%>/<%=t.year%></br></br>
+Workout intensity: <%=@workout.intensity%>
 Exercises:
 <%@workout.exercises.each do |exercise|%>
   name: <%=exercise.name%></br>
