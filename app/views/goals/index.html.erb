@@ -1,0 +1,9 @@
+<%@goals.each do |goal|%>
+  <strong>Goal Description:</strong> <%=goal.description%></br>
+  <strong>Achieved?:</strong> <%=goal.achieved_status%></br>
+  <strong>Date achieved:</strong> <%if goal.date_achieved != nil%>
+    <%=goal.date_achieved%></br></br>
+    <%else%>
+      <%="Not yet"%></br></br>
+  <%end%>
+<%end%>

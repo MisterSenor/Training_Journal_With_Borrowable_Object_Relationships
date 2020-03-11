@@ -1,4 +1,5 @@
 <%@workouts.each do |workout|%>
   Workout description: <%=workout.description%></br>
-  Workout intensity: <%=workout.intensity%></br></br>
+  Workout intensity: <%=workout.intensity%></br>
+  <%= link_to "Edit workout", edit_workout_path(workout)%></br></br>
   <%end%>

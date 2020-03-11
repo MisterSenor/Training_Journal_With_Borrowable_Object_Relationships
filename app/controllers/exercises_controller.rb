@@ -34,8 +34,11 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise = Exercise.find(params[:id])
-    @exercise.update(exercise_params)
-    redirect_to exercise_path(@exercise)
+    if @exercise.update(exercise_params)
+      redirect_to exercise_path(@exercise)
+    else
+      render :edit
+    end
   end
 
 

@@ -1,4 +1,13 @@
 <h1>Edit this exercise</h1>
+<%if @exercise.errors.any?%>
+  <h3>There was a problem with the last attempted update:</h3>
+  <ul>
+    <%@exercise.errors.full_messages.each do |message|%>
+    <li><%=message%></li>
+    <%end%>
+    </ul>
+  <%end%>
+
 <%=form_for @exercise do |f|%>
   <%=f.label :name%>
   <%=f.text_field :name%>

@@ -1,0 +1,17 @@
+<%workout_number = "a number"%>
+<%current_user.created_workouts.each_with_index do |workout, index|%>
+ <%if workout.description == @workout.description%>
+    <%workout_number = index + 1%>
+    <%end%>
+  <%end%>
+
+<h1>Edit workout #<%=workout_number%></h1>
+<%= form_for @workout do |f|%>
+  <%=f.label :description%>
+  <%=f.text_field :description%>
+  </br>
+  <%= f.label :intensity%>
+  <%=f.select :intensity, options_for_select(["low", "medium", "high"])%>
+
+  <%=f.submit "Update workout"%>
+<%end%>
