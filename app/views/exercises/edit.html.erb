@@ -1,3 +1,4 @@
+
 <h1>Edit this exercise</h1>
 <%if @exercise.errors.any?%>
   <h3>There was a problem with the last attempted update:</h3>
@@ -30,7 +31,7 @@
     <%=w.text_field :description%>
     </br>
     <%= w.label :intensity%>
-    <%=w.select :intensity, options_for_select(["low", "medium", "high"])%>
+    <%=w.select :intensity, options_for_select([nil, "low", "medium", "high"])%>
     </br>
     <%=w.hidden_field :user_id, value: current_user.id%>
   <%end%>

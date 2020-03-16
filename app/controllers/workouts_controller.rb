@@ -27,6 +27,12 @@ class WorkoutsController < ApplicationController
   end
 
   def update
+    @workout = Workout.find(params[:id])
+    if @workout.update(workout_params)
+      redirect_to workout_path(@workout)
+    else
+      render :edit
+    end
   end
 
 

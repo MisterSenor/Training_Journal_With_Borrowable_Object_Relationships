@@ -24,6 +24,7 @@
 
     <%if current_user%>
       <%=link_to "My Goals", goals_path%>
+      <%= link_to "Add a Goal", new_goal_path%>
       <%= link_to "Add a Workout", new_workout_path%>
       <%= link_to "All Workouts", workouts_path%>
       <%= link_to "Add an Exercise", new_exercise_path%>

@@ -6,9 +6,9 @@
   <%end%>
 <%end%>
 <h1> Workout #: <%=workout_number%></h1>
-Workout description: <%=@workout.description%></br>
-Workout intensity: <%=@workout.intensity%>
-Exercises:
+<strong>Workout description:</strong> <%=@workout.description%></br>
+<strong>Workout intensity:</strong> <%=@workout.intensity%></br>
+<strong>Exercises:</strong>
 <%@workout.exercises.each do |exercise|%>
   name: <%=exercise.name%></br>
   sets, reps & weights: <%=exercise.sets_reps_weights%></br>
