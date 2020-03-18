@@ -4,7 +4,7 @@
   <h3>There was a problem with the last attempted update:</h3>
   <ul>
     <%@exercise.errors.full_messages.each do |message|%>
-    <li><%=message%></li>
+    <li><font color="red"><%=message%></font></li>
     <%end%>
     </ul>
   <%end%>

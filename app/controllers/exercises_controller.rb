@@ -25,10 +25,14 @@ class ExercisesController < ApplicationController
   def show
     @exercise = Exercise.find(params[:id])
     @workout = Workout.find(@exercise.workout_id)
+      if @exercise.workout.user_id != current_user.id
+        flash[:message] = "You are not eligible to see other users' exercises."
+        redirect_to exercises_path
+      end
   end
 
   def index
-    @exercises = Exercise.all
+    @workouts = current_user.created_workouts
   end
 
   def edit
@@ -37,6 +41,10 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise = Exercise.find(params[:id])
+    if @exercise.workout.user_id != current_user.id
+      flash[:message] = "You cannot change other users' exercises."
+      redirect_to exercises_path
+    end
     if @exercise.update(update_params_w_existing_workout)
       redirect_to exercise_path(@exercise)
     elsif @exercise.update(exercise_params)

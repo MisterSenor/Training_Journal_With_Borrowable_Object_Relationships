@@ -1,19 +1,40 @@
 
-<%workout_number = "a number"%>
+<%current_user_workout_number = "a number"%>
 <%current_user.created_workouts.each_with_index do |workout, index|%>
  <%if workout.description == @workout.description%>
-    <%workout_number = index + 1%>
+    <%current_user_workout_number = index + 1%>
   <%end%>
 <%end%>
-<h1> Workout #: <%=workout_number%></h1>
+
+<%other_user_workout_number = "a number"%>
+<%Workout.all.each do |workout|%>
+  <%if workout.description == @workout.description%>
+  <%user = User.find(workout.user_id)%>
+  <%user.created_workouts.each_with_index do |w, index|%>
+    <%if w.description == @workout.description%>
+      <%other_user_workout_number = index + 1%>
+      <%end%>
+    <%end%>
+  <%end%>
+<%end%> 
+
+
+<%if current_user.id == @workout.user_id%>
+  <h1> Workout #: <%=current_user_workout_number%></h1>
+  <%else%> <h1> Workout #: <%=other_user_workout_number%>, of <%=@workout.user.username%></h1>
+  <%end%>
+
 <strong>Workout description:</strong> <%=@workout.description%></br>
 <strong>Workout intensity:</strong> <%=@workout.intensity%></br>
-<strong>Exercises:</strong>
+<strong>Exercises:</strong></br>
 <%@workout.exercises.each do |exercise|%>
-  name: <%=exercise.name%></br>
-  sets, reps & weights: <%=exercise.sets_reps_weights%></br>
-  <%time = exercise.date_performed%>
-  date performed: <%=time.month%>/<%=time.day%>/<%=time.year%></br></br>
-  <%end%>
+  <ul>
+    <li><i>name:</i> <%=exercise.name%></li>
+    <li><i>sets, reps & weights:</i> <%=exercise.sets_reps_weights%></li>
+    <%time = exercise.date_performed%>
+    <li><i>date performed:</i></li> <%=time.month%>/<%=time.day%>/<%=time.year%></br></br>
+    </ul>
+    <%end%>
+
 
 <%=link_to "Add an exercise to this workout", new_exercise_path%>

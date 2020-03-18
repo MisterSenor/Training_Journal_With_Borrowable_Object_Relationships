@@ -6,7 +6,9 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    @workout = current_user.created_workouts.new(workout_params)
+    @workout = Workout.create(workout_params)
+    current_user.created_workouts << @workout
+    #@workout = current_user.created_workouts.new(workout_params)
     if @workout.save
       redirect_to workout_path(@workout)
     else
@@ -15,7 +17,7 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    @workout = Workout.find_by(id: params[:id])
+    @workout = Workout.find(params[:id])
   end
 
   def index
@@ -33,6 +35,16 @@ class WorkoutsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @workout = Workout.find(params[:id])
+    if @workout.user_id != current_user.id
+      flash[:message] = "You can't delete this workout because it's not yours."
+      render :index
+    end
+    @workout.destroy
+    redirect_to workouts_path
   end
 
 

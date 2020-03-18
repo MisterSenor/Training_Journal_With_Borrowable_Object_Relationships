@@ -1,9 +1,12 @@
-<%@exercises.each do |exercise|%>
-  Goal: <%=exercise.goal.description%></br>
-  Workout: <%=exercise.workout.description%></br>
-  Name:<%=exercise.name%></br>
-  Sets, reps, and weights: <%=exercise.sets_reps_weights%></br>
-  <%t = exercise.date_performed%>
-  Date performed: <%=t.month%>/<%=t.day%>/<%=t.year%></br>
-  <%=link_to "Edit this exercise", edit_exercise_path(exercise)%></br></br>
+<h1> All User #<%=current_user.id%>'s Exercises</h1>
+<%@workouts.each do |workout|%>
+  <%workout.exercises.each do |exercise|%>
+    <strong>Goal: </strong><%=exercise.goal.description%></br>
+    <strong>Workout: </strong><%=exercise.workout.description%></br>
+    <strong>Name: </strong><%=exercise.name%></br>
+    <strong>Sets, reps, and weights: </strong><%=exercise.sets_reps_weights%></br>
+    <%t = exercise.date_performed%>
+    <strong>Date performed: </strong><%=t.month%>/<%=t.day%>/<%=t.year%></br>
+    <%=link_to "Edit this exercise", edit_exercise_path(exercise)%></br></br>
+    <%end%>
   <%end%>

@@ -13,7 +13,7 @@
 
     <% flash.each do |type, msg| %>
       <div>
-        <%= msg %>
+        <font color="red"><%=msg%></font>
       </div>
     <% end %>
 
@@ -25,10 +25,10 @@
     <%if current_user%>
       <%=link_to "My Goals", goals_path%>
       <%= link_to "Add a Goal", new_goal_path%>
-      <%= link_to "Add a Workout", new_workout_path%>
       <%= link_to "All Workouts", workouts_path%>
-      <%= link_to "Add an Exercise", new_exercise_path%>
-      <%= link_to "My Exercises", exercises_path%></br></br>
+      <%= link_to "Add a Workout", new_workout_path%>
+      <%= link_to "My Exercises", exercises_path%>
+      <%= link_to "Add an Exercise", new_exercise_path%></br></br>
     <%end%>
 
     <%= yield %>

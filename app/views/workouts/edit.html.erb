@@ -11,7 +11,7 @@
   <%=f.text_field :description%>
   </br>
   <%= f.label :intensity%>
-  <%=f.select :intensity, options_for_select([nil, "low", "medium", "high"])%>
-
-  <%=f.submit "Update workout"%>
+  <%=f.select :intensity, options_for_select([nil, "low", "medium", "high"])%></br>
+  <%=f.submit "Update workout"%></br>
+  <%=link_to "Add an exercise to this workout", new_exercise_path%>
 <%end%>
