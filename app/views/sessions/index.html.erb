@@ -1,4 +1,9 @@
-<h1>Welcome to the Training Journal</h1>
+
+<%if logged_in?%>
+  <h1>Welcome to the Training Journal, <%=current_user.username%>.</h1>
+  <%else%>
+    <h1>Welcome to the Training Journal.</h1>
+  <%end%>
 <h3><i>"Are you training for something, or are you just exercising?"</i></h3>
 
 
