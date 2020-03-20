@@ -3,8 +3,10 @@
   <strong>Workout creator:</strong> <%=workout.user.username%></br>
   <strong>Workout description:</strong> <%=workout.description%></br>
   <strong>Workout intensity:</strong> <%=workout.intensity%></br>
+  <%= link_to "See this workout's exercises", workout_exercises_path(workout) %></br>
   <%if workout.user_id == current_user.id%>
       <%= link_to "Edit workout", edit_workout_path(workout)%></br>
+      <%= link_to "Add an exercise to this workout", new_workout_exercise_path(workout)%>
       <%= button_to "Delete workout", workout_path(workout), method: :delete, data: { confirm: "Are you sure that you want to delete this workout?"}%>
       <%end%></br></br>
   <%end%>

@@ -23,24 +23,26 @@ class ExercisesController < ApplicationController
 
 
   def show
-    @exercise = Exercise.find(params[:id])
-    @workout = Workout.find(@exercise.workout_id)
-      if @exercise.workout.user_id != current_user.id
-        flash[:message] = "You are not eligible to see other users' exercises."
-        redirect_to exercises_path
-      end
+    @exercise = Exercise.find_by(id: params[:id])
+    if Workout.find_by(id: @exercise.workout_id)
+      @workout = Workout.find(@exercise.workout_id)
+    end
   end
 
   def index
-    @workouts = current_user.created_workouts
+    if params[:workout_id] && @workout = Workout.find_by(id: params[:workout_id])
+      @exercises = @workout.exercises
+    else
+      @exercises = current_user.exercises
+    end
   end
 
   def edit
-    @exercise = Exercise.find(params[:id])
+    @exercise = Exercise.find_by(id: params[:id])
   end
 
   def update
-    @exercise = Exercise.find(params[:id])
+    @exercise = Exercise.find_by(id: params[:id])
     if @exercise.workout.user_id != current_user.id
       flash[:message] = "You cannot change other users' exercises."
       redirect_to exercises_path
@@ -54,6 +56,15 @@ class ExercisesController < ApplicationController
     end
   end
 
+  def destroy
+    @exercise = Exercise.find_by(id: params[:id])
+    if @exercise.workout.user_id != current_user.id
+      flash[:message] = "This is not your exercise to delete."
+      render :index
+    end
+    @exercise.destroy
+    redirect_to exercises_path
+  end
 
 
   private

@@ -16,11 +16,11 @@
       <%end%>
     <%end%>
   <%end%>
-<%end%> 
+<%end%>
 
 
 <%if current_user.id == @workout.user_id%>
-  <h1> Workout #: <%=current_user_workout_number%></h1>
+  <h1> <%=current_user.username%>'s Workout #: <%=current_user_workout_number%></h1>
   <%else%> <h1> Workout #: <%=other_user_workout_number%>, of <%=@workout.user.username%></h1>
   <%end%>
 

@@ -1,12 +1,22 @@
-<h1> All User #<%=current_user.id%>'s Exercises</h1>
-<%@workouts.each do |workout|%>
-  <%workout.exercises.each do |exercise|%>
-    <strong>Goal: </strong><%=exercise.goal.description%></br>
-    <strong>Workout: </strong><%=exercise.workout.description%></br>
-    <strong>Name: </strong><%=exercise.name%></br>
-    <strong>Sets, reps, and weights: </strong><%=exercise.sets_reps_weights%></br>
-    <%t = exercise.date_performed%>
-    <strong>Date performed: </strong><%=t.month%>/<%=t.day%>/<%=t.year%></br>
-    <%=link_to "Edit this exercise", edit_exercise_path(exercise)%></br></br>
-    <%end%>
+<%if params[:workout_id]%>
+  <h1> All Exercises for <i><%=@workout.description%></i></h1>
+<%else%>
+  <h1> All Exercises </h1>
   <%end%>
+<%@exercises.each do |exercise|%>
+  <strong>Name: </strong><%=exercise.name%></br>
+  <strong>Sets, reps, and weights: </strong><%=exercise.sets_reps_weights%></br>
+  <%t = exercise.date_performed%>
+  <strong>Date performed: </strong><%=t.month%>/<%=t.day%>/<%=t.year%></br>
+  <strong>Workout: </strong>
+  <%if exercise.workout%>
+    <%=exercise.workout.description%>
+  <%else%>
+      <%=""%>
+  <%end%></br>
+  <strong>Goal: </strong><%=exercise.goal.description%></br>
+  <%if exercise.workout.user_id == current_user.id%>
+    <%= link_to "Edit this exercise", edit_exercise_path(exercise)%></br>
+    <%= button_to "Delete this exercise", exercise_path(exercise), method: :delete%></br>
+    <%end%></br>
+<%end%>
