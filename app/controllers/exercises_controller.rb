@@ -2,8 +2,12 @@ class ExercisesController < ApplicationController
   before_action :require_login
 
   def new
-    @exercise = Exercise.new
-    @exercise.build_workout
+    if params[:workout_id] && @workout = Workout.find_by(id: params[:workout_id])
+      @exercise = @workout.exercises.build
+    else
+      @exercise = Exercise.new
+      @exercise.build_workout
+    end
   end
 
   def create
@@ -43,13 +47,11 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise = Exercise.find_by(id: params[:id])
-    if @exercise.workout.user_id != current_user.id
+    @workout = Workout.find_by(id: @exercise.workout.id)
+    if !current_user.created_workouts.include?(@workout) && !current_user.borrowed_workouts.include?(@workout)
       flash[:message] = "You cannot change other users' exercises."
-      redirect_to exercises_path
-    end
-    if @exercise.update(update_params_w_existing_workout)
-      redirect_to exercise_path(@exercise)
-    elsif @exercise.update(exercise_params)
+      render :edit
+    elsif @exercise.update(update_params_w_existing_workout) || @exercise.update(exercise_params)
       redirect_to exercise_path(@exercise)
     else
       render :edit
@@ -58,8 +60,10 @@ class ExercisesController < ApplicationController
 
   def destroy
     @exercise = Exercise.find_by(id: params[:id])
-    if @exercise.workout.user_id != current_user.id
+    @workout = Workout.find_by(id: @exercise.workout_id)
+    if !current_user.created_workouts.include?(@workout) && !current_user.borrowed_workouts..include?(@workout)
       flash[:message] = "This is not your exercise to delete."
+      @exercises = Exercise.all
       render :index
     end
     @exercise.destroy

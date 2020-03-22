@@ -15,7 +15,7 @@
       <%=""%>
   <%end%></br>
   <strong>Goal: </strong><%=exercise.goal.description%></br>
-  <%if exercise.workout.user_id == current_user.id%>
+  <%if exercise.workout.user_id == current_user.id || !current_user.borrowed_workouts.include?(exercise)%>
     <%= link_to "Edit this exercise", edit_exercise_path(exercise)%></br>
     <%= button_to "Delete this exercise", exercise_path(exercise), method: :delete%></br>
     <%end%></br>
