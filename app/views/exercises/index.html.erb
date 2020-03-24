@@ -1,3 +1,4 @@
+
 <%if params[:workout_id]%>
   <h1> All Exercises for <i><%=@workout.description%></i></h1>
 <%else%>
@@ -5,18 +6,15 @@
   <%end%>
 <%@exercises.each do |exercise|%>
   <strong>Name: </strong><%=exercise.name%></br>
-  <strong>Sets, reps, and weights: </strong><%=exercise.sets_reps_weights%></br>
-  <%t = exercise.date_performed%>
-  <strong>Date performed: </strong><%=t.month%>/<%=t.day%>/<%=t.year%></br>
-  <strong>Workout: </strong>
-  <%# <%if exercise.workout%>
-      <%# <%=exercise.workout.description%>
-    <%# <%else%>
-        <%# <%=""%></br>
-    <%# <%end%> %>
-  <strong>Goal: </strong><%=exercise.goal.description%></br>
-  <%if exercise.workout.user_id == current_user.id || !current_user.borrowed_workouts.include?(exercise)%>
-    <%= link_to "Edit this exercise", edit_exercise_path(exercise)%></br>
-    <%= button_to "Delete this exercise", exercise_path(exercise), method: :delete%></br></br>
+  <ul>
+    <li><strong>Sets, reps, and weights: </strong><%=exercise.sets_reps_weights%></li>
+    <%t = exercise.date_performed%>
+    <li><strong>Date performed: </strong><%=t.month%>/<%=t.day%>/<%=t.year%></li>
+    <li><strong>Workout: </strong><%=exercise.workout.description%></li>
+    <li><strong>Goal: </strong><%=exercise.goal.description%></li>
+  </ul>
+  <%if current_user.created_workouts.include?(exercise.workout) || current_user.borrowed_workouts.include?(exercise.workout)%>
+      <%= link_to "Edit this exercise", edit_exercise_path(exercise)%></br>
+      <%= button_to "Delete this exercise", exercise_path(exercise), method: :delete%></br></br>
     <%end%>
-<%end%>
+  <%end%>

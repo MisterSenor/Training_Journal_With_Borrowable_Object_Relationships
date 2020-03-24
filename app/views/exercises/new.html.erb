@@ -22,16 +22,16 @@
   <%=f.label :goal_id%>
   <%=f.collection_select :goal_id, current_user.goals, :id, :description%>
   </br></br>
-<%if @workout%>
-  <strong>Workout: </strong><%=@workout.description%>
-  <%= f.hidden_field :workout_id%>
-<%else%>
-    <%=f.label :workout_id, "Select a workout"%>
-    <%=f.collection_select :workout_id, Workout.all, :id, :description, include_blank: true%>
+  <%if @workout%>
+      <strong>Workout: </strong><%=@workout.description%>
+      <%= f.hidden_field :workout_id%>
+  <%else%>
+      <%=f.label :workout_id, "Select a workout"%>
+      <%=f.collection_select :workout_id, Workout.all, :id, :description, include_blank: true%>
   <%end%>
   </br></br>
   <%if !params[:workout_id]%>
-  <h3>Or create a new workout for this exercise</h3>
+    <h3>Or create a new workout for this exercise</h3>
     <%=f. fields_for :workout do |w|%>
       <%=w.label :description%>
       <%=w.text_field :description%>

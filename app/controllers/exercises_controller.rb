@@ -12,12 +12,9 @@ class ExercisesController < ApplicationController
 
   def create
     @exercise = Exercise.new(exercise_params)
-      if exercise_params[:workout_id]
-        @exercise.workout_id = exercise_params[:workout_id]
-      elsif exercise_params[:workout_attributes]
-        @workout = Workout.new(exercise_params[:workout_attributes])
-        @exercise.workout_id = @workout.id
-      end
+    # if exercise_params[:workout_id]
+    #   @exercise.workout_id = exercise_params[:workout_id]
+    # end
     if @exercise.save
       redirect_to exercise_path(@exercise)
     else
@@ -61,7 +58,7 @@ class ExercisesController < ApplicationController
   def destroy
     @exercise = Exercise.find_by(id: params[:id])
     @workout = Workout.find_by(id: @exercise.workout_id)
-    if !current_user.created_workouts.include?(@workout) && !current_user.borrowed_workouts..include?(@workout)
+    if !current_user.created_workouts.include?(@workout) && !current_user.borrowed_workouts.include?(@workout)
       flash[:message] = "This is not your exercise to delete."
       @exercises = Exercise.all
       render :index

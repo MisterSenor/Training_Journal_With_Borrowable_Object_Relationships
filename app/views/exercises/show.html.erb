@@ -1,11 +1,13 @@
 <h1>Exercise information</h1>
 <strong>Name:</strong> <%=@exercise.name%></br>
 <ul>
-<li><strong>Sets: Reps @ Weights:</strong> <%=@exercise.sets_reps_weights%></li></br>
+<li><strong>Sets: Reps @ Weights:</strong> <%=@exercise.sets_reps_weights%></li>
 <%t = @exercise.date_performed%>
-<li><strong>Date performed:</strong> <%=t.month%>/<%=t.day%>/<%=t.year%></li></br>
-<li><strong>Workout:</strong> <%=@workout.description%></li></br>
-<li><strong>Goal:</strong> <%=@exercise.goal.description%></li></br>
+<li><strong>Date performed:</strong> <%=t.month%>/<%=t.day%>/<%=t.year%></li>
+<li><strong>Workout:</strong> <%=@workout.description%></li>
+<li><strong>Goal:</strong> <%=@exercise.goal.description%></li>
 </ul>
-<%=link_to "Edit this exercise", edit_exercise_path(@exercise)%></br>
-<%= button_to "Delete this exercise", exercise_path(@exercise), method: :delete%></br>
+<%if current_user.created_workouts.include?(@exercise.workout) || current_user.borrowed_workouts.include?(@exercise.workout)%>
+  <%=link_to "Edit this exercise", edit_exercise_path(@exercise)%></br>
+  <%= button_to "Delete this exercise", exercise_path(@exercise), method: :delete%></br>
+<%end%>
