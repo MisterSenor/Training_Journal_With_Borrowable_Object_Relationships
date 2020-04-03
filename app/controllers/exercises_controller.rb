@@ -12,9 +12,6 @@ class ExercisesController < ApplicationController
 
   def create
     @exercise = Exercise.new(exercise_params)
-    # if exercise_params[:workout_id]
-    #   @exercise.workout_id = exercise_params[:workout_id]
-    # end
     if @exercise.save
       redirect_to exercise_path(@exercise)
     else
@@ -34,7 +31,7 @@ class ExercisesController < ApplicationController
     if params[:workout_id] && @workout = Workout.find_by(id: params[:workout_id])
       @exercises = @workout.exercises
     else
-      @exercises = current_user.exercises
+      @exercises = current_user.created_exercises
     end
   end
 

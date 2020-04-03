@@ -12,6 +12,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to workout_path(@workout)
     else
+      binding.pry
       render :new
     end
   end
@@ -50,7 +51,7 @@ class WorkoutsController < ApplicationController
 
   private
     def workout_params
-      params.require(:workout).permit(:description, :intensity, :user_id)
+      params.require(:workout).permit(:description, :intensity, :creator_id, :borrower_id)
     end
 
 

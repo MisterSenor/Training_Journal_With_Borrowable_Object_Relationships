@@ -37,9 +37,9 @@
       <%=w.text_field :description%>
       </br>
       <%= w.label :intensity%>
-      <%=w.select :intensity, options_for_select([nil, "low", "medium", "high"])%>
+      <%= w.select :intensity, options_for_select(["low", "medium", "high"])%>
       </br>
-      <%=w.hidden_field :user_id, value: current_user.id%>
+      <%= w.hidden_field :user_id, value: current_user.id%>
       <%end%>
   <%end%>
   </br></br>
