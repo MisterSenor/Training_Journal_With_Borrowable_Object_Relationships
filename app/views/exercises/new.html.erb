@@ -1,11 +1,6 @@
-<%if @exercise.errors.any?%>
-  <h3>There was a problem with the last attempted update:</h3>
-  <ul>
-    <%@exercise.errors.full_messages.each do |message|%>
-    <li><%=message%></li>
-    <%end%>
-    </ul>
-  <%end%>
+
+<%= render partial: "layouts/errors", locals: { object: @exercise } %>
+<%= render partial: "layouts/errors", locals: { object: @exercise.workout } %>
 
 <h1>Record an exercise</h1>
 
@@ -27,7 +22,7 @@
       <%= f.hidden_field :workout_id%>
   <%else%>
       <%=f.label :workout_id, "Select a workout"%>
-      <%=f.collection_select :workout_id, Workout.all, :id, :description, include_blank: true%>
+      <%=f.collection_select :workout_id, current_user.workouts, :id, :description, include_blank: true%>
   <%end%>
   </br></br>
   <%if !params[:workout_id]%>

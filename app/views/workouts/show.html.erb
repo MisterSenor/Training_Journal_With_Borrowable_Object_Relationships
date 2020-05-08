@@ -1,6 +1,6 @@
 
 <%current_user_workout_number = "a number"%>
-<%current_user.created_workouts.each_with_index do |workout, index|%>
+<%current_user.workouts.each_with_index do |workout, index|%>
  <%if workout.description == @workout.description%>
     <%current_user_workout_number = index + 1%>
   <%end%>
@@ -10,7 +10,7 @@
 <%Workout.all.each do |workout|%>
   <%if workout.description == @workout.description%>
   <%user = User.find(workout.user_id)%>
-  <%user.created_workouts.each_with_index do |w, index|%>
+  <%user.workouts.each_with_index do |w, index|%>
     <%if w.description == @workout.description%>
       <%other_user_workout_number = index + 1%>
       <%end%>

@@ -1,5 +1,5 @@
 <%workout_number = "a number"%>
-<%current_user.created_workouts.each_with_index do |workout, index|%>
+<%current_user.workouts.each_with_index do |workout, index|%>
  <%if workout.description == @workout.description%>
     <%workout_number = index + 1%>
     <%end%>

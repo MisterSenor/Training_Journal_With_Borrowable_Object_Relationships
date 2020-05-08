@@ -1,3 +1,5 @@
+<%= render partial: "layouts/errors", locals: { object: @workout } %>
+
 <h1>Create a new workout</h1>
 <%= form_for @workout do |f|%>
   <%=f.label :description%>

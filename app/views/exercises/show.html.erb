@@ -7,7 +7,7 @@
 <li><strong>Workout:</strong> <%=@workout.description%></li>
 <li><strong>Goal:</strong> <%=@exercise.goal.description%></li>
 </ul>
-<%if current_user.created_workouts.include?(@exercise.workout) || current_user.borrowed_workouts.include?(@exercise.workout)%>
+<%if current_user.workouts.include?(@exercise.workout)%>
   <%=link_to "Edit this exercise", edit_exercise_path(@exercise)%></br>
   <%= button_to "Delete this exercise", exercise_path(@exercise), method: :delete%></br>
 <%end%>

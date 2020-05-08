@@ -15,5 +15,6 @@ class Exercise < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :sets_reps_weights, presence: true
+  validates_associated :workout
 
 end

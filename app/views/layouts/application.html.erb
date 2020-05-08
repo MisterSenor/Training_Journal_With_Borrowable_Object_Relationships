@@ -6,23 +6,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
   </head>
 
   <body>
 
-    <% flash.each do |type, msg| %>
-      <div>
-        <font color="red"><%=msg%></font>
-      </div>
-    <% end %>
-
+  
 
     <%if current_user%>
       <%= link_to "Logout", logout_path, :method => :delete%>
-    <%end%>
-
-    <%if current_user%>
       <%=link_to "My Goals", goals_path%>
       <%= link_to "Add a Goal", new_goal_path%>
       <%= link_to "All Workouts", workouts_path%>
@@ -30,7 +22,7 @@
       <%= link_to "My Exercises", exercises_path(current_user)%>
       <%= link_to "Add an Exercise", new_exercise_path%></br></br>
     <%end%>
-
+    
     <%= yield %>
 
 

@@ -6,6 +6,7 @@
   <%end%>
 <h3><i>"Are you training for something, or are you just exercising?"</i></h3>
 
-
-<%=button_to "Log In", login_path, :method => :get%></br>
-<%=button_to "Sign Up", signup_path, :method => :get%></br>
+<%if !current_user%>  
+  <%=button_to "Log In", login_path, :method => :get%></br>
+  <%=button_to "Sign Up", signup_path, :method => :get%></br>
+<%end%>

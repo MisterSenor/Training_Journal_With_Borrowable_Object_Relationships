@@ -7,12 +7,11 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.create(workout_params)
-    current_user.created_workouts << @workout
-    #@workout = current_user.created_workouts.new(workout_params)
+    current_user.workouts << @workout
+    #@workout = current_user.workouts.new(workout_params)
     if @workout.save
       redirect_to workout_path(@workout)
     else
-      binding.pry
       render :new
     end
   end
@@ -22,7 +21,7 @@ class WorkoutsController < ApplicationController
   end
 
   def index
-    @workouts = Workout.all
+    @workouts = current_user.workouts
   end
 
   def edit

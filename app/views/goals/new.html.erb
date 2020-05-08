@@ -1,3 +1,5 @@
+<%= render partial: "layouts/errors", locals: { object: @goal } %>
+
 <h1>Create a new goal</h1>
 <%= form_for @goal do |f|%>
   <%=f.label :description%>
