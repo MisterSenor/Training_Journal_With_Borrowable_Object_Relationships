@@ -27,7 +27,7 @@
 <strong>Workout description:</strong> <%=@workout.description%></br>
 <strong>Workout intensity:</strong> <%=@workout.intensity%></br>
 <strong>Exercises:</strong></br>
-<%@workout.exercises.each do |exercise|%>
+<%@workout.workout_exercises.each do |exercise|%>
   <ul>
     <li><i>name:</i> <%=exercise.name%></li>
     <li><i>sets, reps & weights:</i> <%=exercise.sets_reps_weights%></li>

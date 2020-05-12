@@ -18,10 +18,10 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find(params[:id])
-    if @goal.user_id != current_user.id
-      flash[:message] = "You are ineligible to see others' goals."
+    if current_user.id != @goal.user_id
+      flash[:message] = "You can't see other users' goals."
       redirect_to goals_path
-    end
+    end 
   end
 
   def index

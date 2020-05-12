@@ -29,7 +29,7 @@ class ExercisesController < ApplicationController
 
   def index
     if params[:workout_id] && @workout = Workout.find_by(id: params[:workout_id])
-      @exercises = @workout.exercises
+      @exercises = @workout.workout_exercises
     else
       @exercises = current_user.workout_exercises || @exercises = current_user.goal_exercises
     end

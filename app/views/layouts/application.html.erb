@@ -11,8 +11,6 @@
 
   <body>
 
-  
-
     <%if current_user%>
       <%= link_to "Logout", logout_path, :method => :delete%>
       <%=link_to "My Goals", goals_path%>
@@ -22,6 +20,13 @@
       <%= link_to "My Exercises", exercises_path(current_user)%>
       <%= link_to "Add an Exercise", new_exercise_path%></br></br>
     <%end%>
+
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %></br>
+
     
     <%= yield %>
 

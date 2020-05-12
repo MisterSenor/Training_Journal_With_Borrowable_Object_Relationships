@@ -1,6 +1,5 @@
 
 <%@workouts.each do |workout|%>
-  <strong>Workout creator:</strong> <%=workout.user.username%></br>
   <strong>Workout description:</strong> <%=workout.description%></br>
   <strong>Workout intensity:</strong> <%=workout.intensity%></br>
   <%= link_to "See this workout's exercises", workout_exercises_path(workout) %></br>

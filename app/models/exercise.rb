@@ -17,4 +17,5 @@ class Exercise < ApplicationRecord
   validates :sets_reps_weights, presence: true
   validates_associated :workout
 
+  scope :last_week_of_exercises,-> {order(date_performed: :desc).limit(7)}
 end
