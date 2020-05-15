@@ -1,5 +1,7 @@
 class GoalsController < ApplicationController
   before_action :require_login
+  before_action :set_goal, only: [:show, :edit]
+
 
   def new
     @goal = Goal.new
@@ -17,11 +19,6 @@ class GoalsController < ApplicationController
 
 
   def show
-    @goal = Goal.find(params[:id])
-    if current_user.id != @goal.user_id
-      flash[:message] = "You can't see other users' goals."
-      redirect_to goals_path
-    end 
   end
 
   def index
@@ -29,7 +26,6 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    @goal = Goal.find(params[:id])
   end
 
   def update
@@ -47,8 +43,19 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:description, :achieved_status, :date_achieved)
+    params.require(:goal).permit(:description, :achieved_status, :date_achieved, :user_id)
   end
+
+  def set_goal 
+    @goal = Goal.find_by(id: params[:id])
+    if !@goal
+      flash[:message] = "A goal with id #{params[:id]} does not exist." 
+      redirect_to goals_path 
+    elsif @goal.user_id != current_user.id 
+      flash[:message] = "You aren't allowed to see other users' goals."
+      redirect_to goals_path
+    end 
+  end 
 
 
 end

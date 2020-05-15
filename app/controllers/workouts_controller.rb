@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :require_login
+  before_action :set_workout, only: [:show, :edit]
 
   def new
     @workout = Workout.new
@@ -16,7 +17,6 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    @workout = Workout.find(params[:id])
   end
 
   def index
@@ -24,7 +24,6 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-    @workout = Workout.find(params[:id])
   end
 
   def update
@@ -49,8 +48,19 @@ class WorkoutsController < ApplicationController
 
   private
     def workout_params
-      params.require(:workout).permit(:description, :intensity, :creator_id, :borrower_id)
+      params.require(:workout).permit(:description, :intensity, :user_id)
     end
+
+    def set_workout
+      @workout = Workout.find_by(id: params[:id])
+      if !@workout 
+        flash[:message] = "Workout with id #{params[:id]} does not exist."
+        redirect_to workouts_path
+      elsif @workout.user_id != current_user.id 
+        flash[:message] = "You are not allowed to see other users' workouts."
+        redirect_to workouts_path
+      end 
+    end 
 
 
 end

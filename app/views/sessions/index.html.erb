@@ -6,11 +6,13 @@
   <%end%>
 <h3><i>"Are you training for something, or are you just exercising?"</i></h3>
 
-Your last week of exercises included:</br></br> 
-<% current_user.workout_exercises.last_week_of_exercises.each do |e| %>
-  <%t = e.date_performed%>
-  <strong>Name:</strong> <%=e.name%></br>
-  <strong>Performed:</strong> <%=t.month%>/<%=t.day%>/<%=t.year%></br></br>
+<%if current_user%>
+  Your last week of exercises included:</br></br> 
+  <% current_user.workout_exercises.last_week_of_exercises.each do |e| %>
+    <%t = e.date_performed%>
+    <strong>Name:</strong> <%=e.name%></br>
+    <strong>Performed:</strong> <%=t.month%>/<%=t.day%>/<%=t.year%></br></br>
+    <%end%>
   <%end%>
 
 <%if !current_user%>  

@@ -70,8 +70,4 @@ class ExercisesController < ApplicationController
       params.require(:exercise).permit(:name, :date_performed, :sets_reps_weights, :goal_id, :workout_id, workout_attributes:[:description, :intensity, :user_id])
     end
 
-    # def update_params_w_existing_workout
-    #   params.require(:exercise).permit(:name, :date_performed, :sets_reps_weights, :goal_id, :workout_id)
-    # end
-
 end

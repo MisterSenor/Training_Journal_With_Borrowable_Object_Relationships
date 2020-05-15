@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
- 
+  
+  helper_method :current_user, :logged_in?, :require_login
+  
+
+  private 
 
   def current_user
     User.find(session[:user_id]) || User.find_by(id: session[:user_id]) if session[:user_id]
@@ -17,8 +21,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :require_login
-  helper_method :current_user
-  helper_method :logged_in?
 
 end
