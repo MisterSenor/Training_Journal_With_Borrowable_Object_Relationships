@@ -8,8 +8,7 @@
   <strong>Name: </strong><%=exercise.name%></br>
   <ul>
     <li><strong>Sets, reps, and weights: </strong><%=exercise.sets_reps_weights%></li>
-    <%t = exercise.date_performed%>
-    <li><strong>Date performed: </strong><%=t.month%>/<%=t.day%>/<%=t.year%></li>
+    <li><strong>Date performed:</strong> <%=exercise.simplified_date_performed%></li>
     <li><strong>Workout: </strong><%=exercise.workout.description%></li>
     <li><strong>Goal: </strong><%=exercise.goal.description%></li>
   </ul>

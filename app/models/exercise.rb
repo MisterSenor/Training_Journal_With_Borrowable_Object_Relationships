@@ -18,4 +18,10 @@ class Exercise < ApplicationRecord
   validates_associated :workout
 
   scope :last_week_of_exercises,-> {order(date_performed: :desc).limit(7)}
+
+  def simplified_date_performed 
+    t = self.date_performed
+    return "#{t.month}/#{t.day}/#{t.year}"
+  end  
+
 end

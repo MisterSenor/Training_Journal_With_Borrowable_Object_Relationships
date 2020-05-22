@@ -26,13 +26,13 @@
 
 <strong>Workout description:</strong> <%=@workout.description%></br>
 <strong>Workout intensity:</strong> <%=@workout.intensity%></br>
-<strong>Exercises:</strong></br>
+<strong>Exercises:</strong>
 <%@workout.workout_exercises.each do |exercise|%>
   <ul>
     <li><i>name:</i> <%=exercise.name%></li>
     <li><i>sets, reps & weights:</i> <%=exercise.sets_reps_weights%></li>
     <%time = exercise.date_performed%>
-    <li><i>date performed:</i></li> <%=time.month%>/<%=time.day%>/<%=time.year%></br></br>
+    <li><i>date performed:</i> <%=exercise.simplified_date_performed%></li></br></br>
     </ul>
     <%end%>
 
